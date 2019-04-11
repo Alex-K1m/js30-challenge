@@ -1,0 +1,19 @@
+{
+  "name": "js30-challenge",
+  "version": "0.0.1",
+  "description": "My solutions for the JavaScript 30 Day Challenge",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alex-K1m/js30-challenge.git"
+  },
+  "author": "Alex Kim",
+  "homepage": "https://github.com/Alex-K1m/js30-challenge#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
