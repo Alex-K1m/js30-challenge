@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
   <meta name="description" content="My solutions for the JavaScript 30 Day Challenge">
-  <link rel="icon" type="image/png" href="assets/JavaScript-logo.png">
+  <link rel="icon"
+        type="image/png"
+        href="{% if page.main != true %}../{% endif %}assets/JavaScript-logo.png">
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.5.0/modern-normalize.min.css">
   <link rel="stylesheet" href="{{ page.css }}">
 </head>
 <body>
   {{ content }}
+  <script src="{{ page.js }}"></script>
 </body>
 </html>
