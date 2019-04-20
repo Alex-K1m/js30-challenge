@@ -8,5 +8,11 @@ document.addEventListener('keypress', ({ key }) => {
 
   const button = document.querySelector(`div[data-key="${keyCode}"]`);
   button.classList.add('playing');
-  setTimeout(() => button.classList.remove('playing'), 70);
 });
+
+document.querySelectorAll('.key')
+  .forEach(button => button.addEventListener('transitionend', (e) => {
+    // filter out a bunch of other css properties transitioned:
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }));
