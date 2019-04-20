@@ -4,7 +4,8 @@ document.addEventListener('keypress', ({ key }) => {
   const keyCode = key.toUpperCase().charCodeAt();
   const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
   if (!audio) return;
-  audio.play();
+  // allows to play audio along other sounds:
+  new Audio(audio.src).play();
 
   const button = document.querySelector(`div[data-key="${keyCode}"]`);
   button.classList.add('playing');
