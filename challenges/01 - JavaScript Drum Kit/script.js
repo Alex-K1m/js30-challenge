@@ -1,6 +1,6 @@
 'use strict';
 
-document.addEventListener('keypress', ({ key }) => {
+const playSound = ({ key }) => {
   const keyCode = key.toUpperCase().charCodeAt();
   const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
   if (!audio) return;
@@ -9,13 +9,16 @@ document.addEventListener('keypress', ({ key }) => {
 
   const button = document.querySelector(`div[data-key="${keyCode}"]`);
   button.classList.add('playing');
-});
+};
 
+const transitionBack = ({ target: { classList }, propertyName }) => {
+  if (classList.contains('playing')
+  // filter out a bunch of other css properties transitioned:
+  && propertyName === 'transform') {
+    classList.remove('playing');
+  }
+};
+
+document.addEventListener('keypress', playSound);
 document.querySelectorAll('.key')
-  .forEach(button => button.addEventListener('transitionend', (e) => {
-    if (e.target.classList.contains('playing')
-      // filter out a bunch of other css properties transitioned:
-      && e.propertyName === 'transform') {
-      e.target.classList.remove('playing');
-    }
-  }));
+  .forEach(button => button.addEventListener('transitionend', transitionBack));
