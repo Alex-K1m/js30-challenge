@@ -13,7 +13,9 @@ document.addEventListener('keypress', ({ key }) => {
 
 document.querySelectorAll('.key')
   .forEach(button => button.addEventListener('transitionend', (e) => {
-    // filter out a bunch of other css properties transitioned:
-    if (e.propertyName !== 'transform') return;
-    e.target.classList.remove('playing');
+    if (e.target.classList.contains('playing')
+      // filter out a bunch of other css properties transitioned:
+      && e.propertyName === 'transform') {
+      e.target.classList.remove('playing');
+    }
   }));
