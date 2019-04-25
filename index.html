@@ -7,7 +7,11 @@ main: true
 challenges:
   - 01 - JavaScript Drum Kit
 ---
-<h1 class="header">JavaScript 30 Challenge</h1>
-{% for name in page.challenges %}
-  <a href="challenges/{{ name }}/index.html">{{ name }}</a><br>
-{% endfor %}
+<main>
+  <h1>JavaScript<span>30</span></h1>
+  <nav>
+    {% for name in page.challenges %}
+      <a href="challenges/{{ name }}/index.html">{{ name }}</a><br>
+    {% endfor %}
+  </nav>
+</main>
