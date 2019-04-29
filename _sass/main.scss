@@ -4,9 +4,18 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'adam.cg_proregular';
+  src: url("../fonts/adam.cg_pro-webfont.woff2") format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
 html {
   font-size: 62.5%;
+}
+a, p {
+  font-family: 'adam.cg_proregular';
 }
 
 main {
@@ -24,7 +33,13 @@ main {
       top: 0.07em;
     }
   }
+  &>p {
+    font-size: 2.4rem;
+  }
   &>nav {
     font-size: 1.6rem;
+    &>a {
+      display: block;
+    }
   }
 }

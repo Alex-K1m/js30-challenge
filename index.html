@@ -6,12 +6,15 @@ js: assets/js/script.js
 main: true
 challenges:
   - 01 - JavaScript Drum Kit
+  - 02 - JS and CSS Clock
 ---
 <main>
   <h1>JavaScript<span>30</span></h1>
+  <p>Vanilla JS coding challenge</p>
+  <p>My js solutions for each task</p>
   <nav>
     {% for name in page.challenges %}
-      <a href="challenges/{{ name }}/index.html">{{ name }}</a><br>
+      <a href="challenges/{{ name }}/index.html">{{ name }}</a>
     {% endfor %}
   </nav>
 </main>
