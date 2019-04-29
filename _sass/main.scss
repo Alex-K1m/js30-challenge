@@ -18,28 +18,31 @@ a, p {
   font-family: 'adam.cg_proregular';
 }
 
-main {
+.main {
   text-align: center;
-  &>h1 {
-    font-size: 15rem;
-    font-family: 'Againts';
-    font-weight: 100;
-    letter-spacing: 2px;
-    color: #000;
-    &>span {
-      color: #ffc600;
-      font-size: 1.5em;
-      position: relative;
-      top: 0.07em;
-    }
+}
+
+.heading {
+  font-size: 15rem;
+  font-family: 'Againts';
+  font-weight: 100;
+  letter-spacing: 2px;
+  color: #000;
+  &>span {
+    color: #ffc600;
+    font-size: 1.5em;
+    position: relative;
+    top: 0.07em;
   }
-  &>p {
-    font-size: 2.4rem;
-  }
-  &>nav {
-    font-size: 1.6rem;
-    &>a {
-      display: block;
-    }
+}
+
+.description {
+  font-size: 2.4rem;
+}
+
+.nav {
+  font-size: 1.6rem;
+  &__link {
+    display: block;
   }
 }

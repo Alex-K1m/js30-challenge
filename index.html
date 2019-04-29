@@ -8,13 +8,12 @@ challenges:
   - 01 - JavaScript Drum Kit
   - 02 - JS and CSS Clock
 ---
-<main>
-  <h1>JavaScript<span>30</span></h1>
-  <p>Vanilla JS coding challenge</p>
-  <p>My js solutions for each task</p>
-  <nav>
+<main class="main">
+  <h1 class="heading">JavaScript<span>30</span></h1>
+  <p class="description">Vanilla JS coding challenge<br>My js solutions for each task</p>
+  <nav class="nav">
     {% for name in page.challenges %}
-      <a href="challenges/{{ name }}/index.html">{{ name }}</a>
+      <a class="nav__link" href="challenges/{{ name }}/index.html">{{ name }}</a>
     {% endfor %}
   </nav>
 </main>
