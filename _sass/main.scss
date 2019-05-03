@@ -19,7 +19,10 @@ a, p {
 }
 
 .main {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
 .heading {
@@ -41,8 +44,29 @@ a, p {
 }
 
 .nav {
-  font-size: 1.6rem;
+  margin: 1em;
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  &__item {
+    background-color: rgba(0, 128, 128, 0.5);
+    padding: 0.5em 1em;
+    border-radius: 1.6em;
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
   &__link {
-    display: block;
+    font-size: 2rem;
+    text-decoration: none;
+    color: #000;
+    overflow: hidden;
+  }
+  &__number {
+    &::before {
+      content: '#';
+    }
   }
 }

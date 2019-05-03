@@ -7,13 +7,30 @@ main: true
 challenges:
   - 01 - JavaScript Drum Kit
   - 02 - JS and CSS Clock
+  - 03 - CSS Variables
+  - 08 - Fun with HTML5 Canvas
+  - 09 - Dev Tools Domination
+  - 10 - Hold Shift and Check Checkboxes
+  - 13 - Slide in on Scroll
+  - 21 - Geolocation
+  - 14 - JavaScript References VS Copying
+  - 29 - Countdown Timer
+  - 25 - Event Capture, Propagation, Bubbling and Once
 ---
 <main class="main">
   <h1 class="heading">JavaScript<span>30</span></h1>
   <p class="description">Vanilla JS coding challenge<br>My js solutions for each task</p>
   <nav class="nav">
-    {% for name in page.challenges %}
-      <a class="nav__link" href="challenges/{{ name }}/index.html">{{ name }}</a>
-    {% endfor %}
+    <ul class="nav__list">
+      {% for name in page.challenges %}
+      {% assign length = name | size %}
+        <li class="nav__item">
+          <a class="nav__link" href="challenges/{{ name }}/index.html">
+            <span class="nav__number">{{ name | slice: 0, 2 }}</span>
+            {{ name | slice: 5, length | strip}}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
   </nav>
 </main>
