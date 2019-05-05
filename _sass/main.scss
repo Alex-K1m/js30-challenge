@@ -52,19 +52,29 @@ a, p {
   }
   &__item {
     background-color: rgba(0, 128, 128, 0.5);
-    padding: 0.5em 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 9em;
+    padding-right: 1em;
     border-radius: 1.6em;
+    overflow: hidden;
+    position: relative;
     &:not(:last-child) {
       margin-bottom: 1em;
     }
   }
   &__link {
-    font-size: 2rem;
+    font-size: 2em;
     text-decoration: none;
     color: #000;
-    overflow: hidden;
   }
   &__number {
+    font-family: 'ubuntu mono';
+    font-weight: 700;
+    font-size: 2.8em;
+    position: absolute;
+    top: -.28em;
+    left: 0;
     &::before {
       content: '#';
     }
