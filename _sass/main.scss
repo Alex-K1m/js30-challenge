@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Againts';
-  src: url('../fonts/againts-webfont.woff2') format('woff2');
+  src: url('../fonts/againts-webfont-subset.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -8,6 +8,13 @@
   font-family: 'adam.cg_proregular';
   src: url("../fonts/adam.cg_pro-webfont.woff2") format('woff2');
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ubuntu mono bold';
+  src: url("../fonts/UbuntuMono-Bold-subset.woff2");
+  font-weight: bold;
   font-style: normal;
 }
 
@@ -69,8 +76,7 @@ a, p {
     color: #000;
   }
   &__number {
-    font-family: 'ubuntu mono';
-    font-weight: 700;
+    font-family: 'ubuntu mono bold';
     font-size: 2.8em;
     position: absolute;
     top: -.28em;
