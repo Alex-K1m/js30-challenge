@@ -29,10 +29,10 @@ a, p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
 }
 
 .heading {
+  margin: 3vh 0;
   font-size: 15rem;
   font-family: 'Againts';
   font-weight: 100;
@@ -48,10 +48,12 @@ a, p {
 
 .description {
   font-size: 2.4rem;
+  margin: 0 0 1vh;
+  text-align: center;
 }
 
 .nav {
-  margin: 1em;
+  margin: 2em 1em 5em;
   &__list {
     padding: 0;
     margin: 0;
@@ -84,5 +86,14 @@ a, p {
     &::before {
       content: '#';
     }
+  }
+}
+
+@media (max-width: 48rem) {
+  .heading {
+    font-size: 18vw;
+  }
+  .description {
+    font-size: 2rem;
   }
 }
