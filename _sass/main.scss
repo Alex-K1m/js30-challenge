@@ -52,6 +52,27 @@ a, p {
   text-align: center;
 }
 
+.repo-link {
+  background-color: teal;
+  border-radius: 1.7em;
+  padding: .5em;
+  display: flex;
+  align-items: center;
+  color: #000;
+  text-decoration: none;
+  &__icon {
+    width: 2.4em;
+    height: 2.4em;
+  }
+  &__text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.6em;
+    margin-left: .3em;
+    position: relative;
+    top: .1em;
+  }
+}
+
 .nav {
   margin: 2em 1em 5em;
   &__list {
