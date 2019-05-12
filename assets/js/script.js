@@ -14,7 +14,7 @@ class Star {
     this.size = size;
     this.opacity = Math.random();
     this.factor = 1;
-    this.shift = Math.random() * 0.03;
+    this.shift = Math.random() / 100;
   }
 
   update() {
@@ -29,7 +29,7 @@ class Star {
   }
 
   draw() {
-    // this.update();
+    this.update();
     context.save();
     context.rotate((Math.PI * -1 / 10));
     context.translate(this.x, this.y);
@@ -53,11 +53,18 @@ class Star {
   }
 }
 
-const testStar = new Star(100, 100, 5);
+const stars = new Array(100)
+  .fill(null)
+  .map(() => {
+    const x = Math.floor(Math.random() * innerWidth);
+    const y = Math.floor(Math.random() * innerHeight);
+    const size = 2 + Math.random() * 3;
+    return new Star(x, y, size);
+  });
 
 const animate = () => {
   context.clearRect(0, 0, innerWidth, innerHeight);
-  testStar.draw();
+  stars.forEach(star => star.draw());
   requestAnimationFrame(animate);
 };
 
