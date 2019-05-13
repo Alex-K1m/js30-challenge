@@ -12,18 +12,18 @@ class Star {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.opacity = Math.random();
+    this.opacity = Math.round(Math.random() * 100);
     this.factor = 1;
-    this.shift = Math.random() / 100;
+    this.shift = 1;
   }
 
   update() {
-    if (this.opacity >= 1) {
+    if (this.opacity >= 100) {
       this.factor = -1;
     } else if (this.opacity <= 0) {
       this.factor = 1;
-      this.x = Math.floor(Math.random() * innerWidth);
-      this.y = Math.floor(Math.random() * innerHeight);
+      this.x = Math.round(Math.random() * innerWidth);
+      this.y = Math.round(Math.random() * innerHeight);
     }
     this.opacity += this.shift * this.factor;
   }
@@ -43,7 +43,7 @@ class Star {
       c.rotate(-(Math.PI * 0.7));
     }
     c.closePath();
-    c.fillStyle = `rgba(255, 255, 200, ${this.opacity})`;
+    c.fillStyle = `rgba(255, 255, 200, ${this.opacity / 100})`;
     c.shadowBlur = 5;
     c.shadowColor = '#ff3';
     c.fill();
@@ -54,9 +54,9 @@ class Star {
 const stars = new Array(100)
   .fill(null)
   .map(() => {
-    const x = Math.floor(Math.random() * innerWidth);
-    const y = Math.floor(Math.random() * innerHeight);
-    const size = 2 + Math.random() * 3;
+    const x = Math.round(Math.random() * innerWidth);
+    const y = Math.round(Math.random() * innerHeight);
+    const size = 2 + Math.round(Math.random() * 3);
     return new Star(x, y, size);
   });
 
