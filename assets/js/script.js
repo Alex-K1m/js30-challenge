@@ -5,7 +5,7 @@ const { innerWidth } = window;
 const { innerHeight } = window;
 canvas.width = innerWidth;
 canvas.height = innerHeight;
-const context = canvas.getContext('2d');
+const c = canvas.getContext('2d');
 
 class Star {
   constructor(x, y, size) {
@@ -30,26 +30,24 @@ class Star {
 
   draw() {
     this.update();
-    context.save();
-    context.rotate((Math.PI * -1 / 10));
-    context.translate(this.x, this.y);
-    context.beginPath();
-
+    c.save();
+    c.rotate((Math.PI * -0.1));
+    c.translate(this.x, this.y);
+    c.beginPath();
     for (let i = 0; i < 4; i += 1) {
-      context.lineTo(0, this.size);
-      context.translate(0, this.size);
-      context.rotate((Math.PI * 2 / 10));
-      context.lineTo(0, -this.size);
-      context.translate(0, -this.size);
-      context.rotate(-(Math.PI * 7 / 10));
+      c.lineTo(0, this.size);
+      c.translate(0, this.size);
+      c.rotate((Math.PI * 0.2));
+      c.lineTo(0, -this.size);
+      c.translate(0, -this.size);
+      c.rotate(-(Math.PI * 0.7));
     }
-    context.closePath();
-
-    context.fillStyle = `rgba(255, 255, 200, ${this.opacity})`;
-    context.shadowBlur = 5;
-    context.shadowColor = '#ff3';
-    context.fill();
-    context.restore();
+    c.closePath();
+    c.fillStyle = `rgba(255, 255, 200, ${this.opacity})`;
+    c.shadowBlur = 5;
+    c.shadowColor = '#ff3';
+    c.fill();
+    c.restore();
   }
 }
 
@@ -63,7 +61,7 @@ const stars = new Array(100)
   });
 
 const animate = () => {
-  context.clearRect(0, 0, innerWidth, innerHeight);
+  c.clearRect(0, 0, innerWidth, innerHeight);
   stars.forEach(star => star.draw());
   requestAnimationFrame(animate);
 };
