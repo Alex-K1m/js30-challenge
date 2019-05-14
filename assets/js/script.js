@@ -1,10 +1,6 @@
 'use strict';
 
 const canvas = /** @type {HTMLCanvasElement} */ (document.querySelector('canvas.background'));
-const width = window.innerWidth;
-const height = window.innerHeight;
-canvas.width = width;
-canvas.height = height;
 const c = canvas.getContext('2d');
 const numOfCircles = 5;
 
@@ -15,28 +11,28 @@ const genRandomInt = (min = 0, max = 1) => Math.round(
 class Circle {
   constructor() {
     this.init();
-    this.x = genRandomInt(-200, width);
-    this.y = genRandomInt(-200, height);
+    this.x = genRandomInt(-200, window.innerWidth);
+    this.y = genRandomInt(-200, window.innerHeight);
   }
 
   init() {
-    const range = Math.round((width + height) / 6);
+    const range = Math.round((window.innerWidth + window.innerHeight) / 6);
     this.radius = genRandomInt(2 * range, range);
     const delta = genRandomInt(5, 20) / 10;
     this.dx = delta;
     this.dy = delta;
     if (genRandomInt()) {
       this.x = -1 * this.radius;
-      this.y = genRandomInt(0, height - 2 * this.radius);
+      this.y = genRandomInt(0, window.innerHeight - 2 * this.radius);
     } else {
-      this.x = genRandomInt(0, width - 2 * this.radius);
+      this.x = genRandomInt(0, window.innerWidth - 2 * this.radius);
       this.y = -1 * this.radius;
     }
   }
 
   update() {
-    if (this.x - this.radius > width
-    || this.y - this.radius > height) {
+    if (this.x - this.radius > window.innerWidth
+    || this.y - this.radius > window.innerHeight) {
       this.init();
     }
     this.x += this.dx;
@@ -52,14 +48,22 @@ class Circle {
   }
 }
 
+const resizeCanvas = () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+};
+
+window.addEventListener('resize', resizeCanvas);
+
 const circles = new Array(numOfCircles)
   .fill(null)
   .map(() => new Circle());
 
 const animate = () => {
-  c.clearRect(0, 0, width, height);
+  c.clearRect(0, 0, window.innerWidth, window.innerHeight);
   circles.forEach(circle => circle.draw());
   requestAnimationFrame(animate);
 };
 
+resizeCanvas();
 animate();
