@@ -1,62 +1,69 @@
 'use strict';
 
 const canvas = /** @type {HTMLCanvasElement} */ (document.querySelector('canvas.background'));
-
-const { innerWidth } = window;
-const { innerHeight } = window;
-canvas.width = innerWidth;
-canvas.height = innerHeight;
 const c = canvas.getContext('2d');
+const numOfCircles = 5;
+
+const genRandomInt = (min = 0, max = 1) => Math.round(
+  Math.random() * (max - min) + min,
+);
 
 class Circle {
-  constructor(x, y, dx, dy, radius, color) {
-    this.x = x;
-    this.y = y;
-    this.dx = dx;
-    this.dy = dy;
-    this.radius = radius;
-    this.color = color;
+  constructor() {
+    this.init();
+    this.x = genRandomInt(-200, window.innerWidth);
+    this.y = genRandomInt(-200, window.innerHeight);
   }
 
-  draw() {
-    c.beginPath();
-    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    c.fillStyle = this.color;
-    c.fill();
+  init() {
+    const range = Math.round((window.innerWidth + window.innerHeight) / 6);
+    this.radius = genRandomInt(2 * range, range);
+    const delta = genRandomInt(5, 20) / 10;
+    this.dx = delta;
+    this.dy = delta;
+    if (genRandomInt()) {
+      this.x = -1 * this.radius;
+      this.y = genRandomInt(0, window.innerHeight - 2 * this.radius);
+    } else {
+      this.x = genRandomInt(0, window.innerWidth - 2 * this.radius);
+      this.y = -1 * this.radius;
+    }
   }
 
   update() {
-    if (this.x + this.radius > innerWidth
-    || this.x - this.radius < 0) {
-      this.dx = -this.dx;
+    if (this.x - this.radius > window.innerWidth
+    || this.y - this.radius > window.innerHeight) {
+      this.init();
     }
-    if (this.y + this.radius > innerHeight
-    || this.y - this.radius < 0) {
-      this.dy = -this.dy;
-    }
-
     this.x += this.dx;
     this.y += this.dy;
+  }
 
-    this.draw();
+  draw() {
+    this.update();
+    c.beginPath();
+    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    c.fillStyle = 'rgba(128, 128, 128, 0.5)';
+    c.fill();
   }
 }
 
-const circles = new Array(20)
+const resizeCanvas = () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+};
+
+window.addEventListener('resize', resizeCanvas);
+
+const circles = new Array(numOfCircles)
   .fill(null)
-  .map(() => {
-    const radius = Math.random() * 40 + 20;
-    const x = Math.random() * (innerWidth - radius * 2) + radius;
-    const y = Math.random() * (innerHeight - radius * 2) + radius;
-    const dx = Math.random() * 5 + 1;
-    const dy = Math.random() * 5 + 1;
-    return new Circle(x, y, dx, dy, radius, 'rgba(160, 160, 255, 0.5)');
-  });
+  .map(() => new Circle());
 
-function animate() {
+const animate = () => {
+  c.clearRect(0, 0, window.innerWidth, window.innerHeight);
+  circles.forEach(circle => circle.draw());
   requestAnimationFrame(animate);
-  c.clearRect(0, 0, innerWidth, innerHeight);
-  circles.forEach(circle => circle.update());
-}
+};
 
+resizeCanvas();
 animate();

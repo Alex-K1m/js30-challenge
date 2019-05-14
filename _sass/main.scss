@@ -127,4 +127,11 @@ a, p {
   left: 0;
   width: 100vw;
   height: 100vh;
+  filter: blur(40px);
+}
+
+@media (min-resolution: 150dpi) {
+  .background {
+    filter: blur(20px);
+  }
 }
