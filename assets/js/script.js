@@ -6,7 +6,7 @@ const height = window.innerHeight;
 canvas.width = width;
 canvas.height = height;
 const c = canvas.getContext('2d');
-const numOfCircles = 8;
+const numOfCircles = 5;
 
 const genRandomInt = (min = 0, max = 1) => Math.round(
   Math.random() * (max - min) + min,
@@ -20,7 +20,8 @@ class Circle {
   }
 
   init() {
-    this.radius = genRandomInt(100, 200);
+    const range = Math.round((width + height) / 6);
+    this.radius = genRandomInt(2 * range, range);
     const delta = genRandomInt(5, 20) / 10;
     this.dx = delta;
     this.dy = delta;
