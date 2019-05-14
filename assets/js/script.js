@@ -12,19 +12,30 @@ const genRandomInt = (min = 0, max = 1) => Math.round(
 );
 
 class Circle {
-  constructor(x, y, radius) {
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-    this.dx = 4;
-    this.dy = 4;
+  constructor() {
+    this.init();
+    this.x = genRandomInt(-200, innerWidth);
+    this.y = genRandomInt(-200, innerHeight);
+  }
+
+  init() {
+    this.radius = genRandomInt(100, 200);
+    const delta = genRandomInt(5, 20) / 10;
+    this.dx = delta;
+    this.dy = delta;
+    if (genRandomInt()) {
+      this.x = -1 * this.radius;
+      this.y = genRandomInt(0, innerHeight - 2 * this.radius);
+    } else {
+      this.x = genRandomInt(0, innerWidth - 2 * this.radius);
+      this.y = -1 * this.radius;
+    }
   }
 
   update() {
-    if (this.x - this.radius > innerWidth || this.y - this.radius > innerHeight) {
-      this.radius = Math.round(Math.random() * 200 + 100);
-      this.x = -1 * this.radius;
-      this.y = genRandomInt(-this.radius, innerHeight - 2 * this.radius);
+    if (this.x - this.radius > innerWidth
+    || this.y - this.radius > innerHeight) {
+      this.init();
     }
     this.x += this.dx;
     this.y += this.dy;
@@ -34,15 +45,18 @@ class Circle {
     this.update();
     c.beginPath();
     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    c.fillStyle = 'rgba(128, 128, 128, 0.5)';
     c.fill();
   }
 }
 
-const testCircle = new Circle(100, 100, 50);
+const circles = new Array(8)
+  .fill(null)
+  .map(() => new Circle());
 
 const animate = () => {
   c.clearRect(0, 0, innerWidth, innerHeight);
-  testCircle.draw();
+  circles.forEach(circle => circle.draw());
   requestAnimationFrame(animate);
 };
 
