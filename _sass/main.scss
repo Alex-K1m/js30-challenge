@@ -18,6 +18,11 @@
   font-style: normal;
 }
 
+$accent: #ffc600;
+$buttons: #a8763e;
+$nums: #6f1a07;
+$text: #2b2118;
+
 html {
   font-size: 62.5%;
 }
@@ -37,9 +42,9 @@ a, p {
   font-family: 'Againts';
   font-weight: 100;
   letter-spacing: 2px;
-  color: #000;
+  color: $text;
   &>span {
-    color: #ffc600;
+    color: $accent;
     font-size: 1.5em;
     position: relative;
     top: 0.07em;
@@ -48,17 +53,18 @@ a, p {
 
 .description {
   font-size: 2.4rem;
+  color: $text;
   margin: 0 0 1vh;
   text-align: center;
 }
 
 .repo-link {
-  background-color: teal;
+  background-color: rgba(168, 118, 62, 0.5);
   border-radius: 1.7em;
   padding: .5em;
   display: flex;
   align-items: center;
-  color: #000;
+  color: $text;
   text-decoration: none;
   &__icon {
     width: 2.4em;
@@ -68,8 +74,6 @@ a, p {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.6em;
     margin-left: .3em;
-    position: relative;
-    top: .1em;
   }
 }
 
@@ -81,7 +85,7 @@ a, p {
     list-style-type: none;
   }
   &__item {
-    background-color: rgba(0, 128, 128, 0.5);
+    background-color: rgba(168, 118, 62, 0.5);
     border-radius: 1.6em;
     overflow: hidden;
     position: relative;
@@ -93,7 +97,7 @@ a, p {
     display: block;
     font-size: 2em;
     text-decoration: none;
-    color: #000;
+    color: $text;
     padding-top: .25em;
     padding-bottom: .25em;
     padding-left: 4.5em;
@@ -102,6 +106,7 @@ a, p {
   &__number {
     font-family: 'ubuntu mono bold';
     font-size: 2.8em;
+    color: $nums;
     position: absolute;
     top: -.28em;
     left: 0;

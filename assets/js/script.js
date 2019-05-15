@@ -2,7 +2,7 @@
 
 const canvas = /** @type {HTMLCanvasElement} */ (document.querySelector('canvas.background'));
 const c = canvas.getContext('2d');
-const numOfCircles = 5;
+const numOfCircles = 6;
 
 const genRandomInt = (min = 0, max = 1) => Math.round(
   Math.random() * (max - min) + min,
@@ -16,7 +16,7 @@ class Circle {
   }
 
   init() {
-    const range = Math.round((window.innerWidth + window.innerHeight) / 6);
+    const range = Math.round((window.innerWidth + window.innerHeight) / 5);
     this.radius = genRandomInt(2 * range, range);
     const delta = genRandomInt(5, 20) / 10;
     this.dx = delta;
@@ -43,7 +43,7 @@ class Circle {
     this.update();
     c.beginPath();
     c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    c.fillStyle = 'rgba(128, 128, 128, 0.5)';
+    c.fillStyle = 'rgba(255, 198, 0, 0.2)';
     c.fill();
   }
 }
