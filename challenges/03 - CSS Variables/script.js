@@ -1,11 +1,8 @@
 'use strict';
 
-const image = document.querySelector('img');
-
-const update = ({ target: { id, value } }) => {
-  image.style.setProperty(`--${id}`, value[0] === '#' ? value : `${value}px`);
+const update = ({ target: { id, value, dataset: { sizing } } }) => {
+  document.body.style.setProperty(`--${id}`, `${value}${sizing || ''}`);
 };
 
-['spacing', 'blur', 'base']
-  .map(id => document.getElementById(id))
+document.querySelectorAll('.controls input')
   .forEach(input => input.addEventListener('input', update));
