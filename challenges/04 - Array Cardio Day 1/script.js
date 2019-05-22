@@ -48,25 +48,61 @@ const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick
 
 // Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
+console.log("1. the list of inventors who were born in the 1500's");
+console.table(
+  inventors.filter(({ year }) => year >= 1500 && year < 1600),
+);
 
 // Array.prototype.map()
 // 2. Give us an array of the inventors' first and last names
+console.log("2. inventors' first and last names");
+console.table(
+  inventors.map(({ first, last }) => `${first} ${last}`),
+);
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
+console.log('3. inventors by birthdate, oldest to youngest');
+console.table(
+  inventors.sort(({ year: y1 }, { year: y2 }) => y2 - y1),
+);
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live?
+console.log(
+  '4. How many years did all the inventors live',
+  inventors.reduce((acc, { year, passed }) => acc + passed - year, 0),
+);
 
 // 5. Sort the inventors by years lived
+console.log('5. inventors by years lived');
+console.table(
+  inventors.sort((
+    { year: y1, passed: p1 },
+    { year: y2, passed: p2 },
+  ) => (p1 - y1) - (p2 - y2)),
+);
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+// [...document.querySelectorAll('.mw-category li')]
+//   .map(node => node.textContent)
+//   .filter(name => /de/.test(name));
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
+const getLastName = fullName => fullName.match(/(.*),/)[1];
+console.log('7. people alphabetically by last name');
+console.table(
+  people.sort((fullName1, fullName2) => (
+    getLastName(fullName1) < getLastName(fullName2) ? -1 : 1
+  )),
+);
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
 const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+console.log('Sum up the instances of each');
+console.table(
+  data.reduce((acc, val) => ({ ...acc, [val]: acc[val] ? acc[val] + 1 : 1 }), {}),
+);
