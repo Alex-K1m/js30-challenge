@@ -74,8 +74,16 @@
       transform: translateY(-400%);
     }
 
+    .panel.open-active *:first-child {
+      transform: translateY(0);
+    }
+
     .panel *:last-child {
       transform: translateY(400%);
+    }
+
+    .panel.open-active *:last-child {
+      transform: translateY(0);
     }
 
     .panel p:nth-child(2) {
@@ -84,6 +92,7 @@
 
     .panel.open {
       font-size: 40px;
+      flex-grow: 4;
     }
 
   </style>
