@@ -36,9 +36,17 @@ const filterCities = data => ({ target: { value } }) => {
 };
 
 (async () => {
-  const response = await fetch(endpoint);
-  const data = await response.json();
-  document
-    .querySelector('.search')
-    .addEventListener('input', filterCities(data));
+  try {
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    document
+      .querySelector('.search')
+      .addEventListener('input', filterCities(data));
+  } catch (error) {
+    const msg = 'Can\'t fetch cities list. Try reloading.';
+    const searchField = document.querySelector('.search');
+    searchField.style.fontSize = '27px';
+    searchField.placeholder = msg;
+    console.log(`${msg} Error: ${error}`);
+  }
 })();
