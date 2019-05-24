@@ -18,9 +18,14 @@ const filterCities = data => ({ target: { value } }) => {
 
   const list = data
     .filter(({ city }) => city.includes(value))
-    .map(({ city }) => {
+    .map(({ city, population }) => {
+      const span = document.createElement('span');
+      span.classList.add('population');
+      span.textContent = population;
+
       const li = document.createElement('li');
       li.textContent = city;
+      li.append(span);
       return li;
     });
 
