@@ -17,14 +17,17 @@ const filterCities = data => ({ target: { value } }) => {
   }
 
   const list = data
-    .filter(({ city }) => city.includes(value))
-    .map(({ city, population }) => {
+    .filter(({ city, state }) => {
+      const pattern = new RegExp(value, 'gi');
+      return pattern.test(city) || pattern.test(state);
+    })
+    .map(({ city, state, population }) => {
       const span = document.createElement('span');
       span.classList.add('population');
       span.textContent = population;
 
       const li = document.createElement('li');
-      li.textContent = city;
+      li.textContent = `${city}, ${state}`;
       li.append(span);
       return li;
     });
