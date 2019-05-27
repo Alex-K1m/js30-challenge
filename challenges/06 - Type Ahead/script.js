@@ -10,6 +10,11 @@ const updateList = ul => document
   .querySelector('.suggestions')
   .replaceWith(ul);
 
+const format = (str) => {
+  if (str.length <= 3) return str;
+  return `${format(str.slice(0, -3))},${str.slice(-3)}`;
+};
+
 const filterCities = data => ({ target: { value } }) => {
   if (value === '') {
     updateList(initialUl);
@@ -24,7 +29,7 @@ const filterCities = data => ({ target: { value } }) => {
     .map(({ city, state, population }) => {
       const span = document.createElement('span');
       span.classList.add('population');
-      span.textContent = population;
+      span.textContent = format(population);
 
       const li = document.createElement('li');
       li.textContent = `${city}, ${state}`;
