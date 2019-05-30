@@ -15,6 +15,23 @@ const format = (str) => {
   return `${format(str.slice(0, -3))},${str.slice(-3)}`;
 };
 
+const makeSpan = (text = '', cls = null) => {
+  const span = document.createElement('span');
+  if (cls) span.classList.add(cls);
+  span.textContent = text;
+  return span;
+};
+
+const highlight = (str, pattern) => {
+  const regex = new RegExp(pattern, 'i');
+  const parts = str.split(regex);
+  const res = [parts[0], ...parts.slice(1)
+    .reduce((acc, part) => [...acc, makeSpan(pattern, 'hl'), part], [])];
+  const wrapper = makeSpan();
+  wrapper.append(...res);
+  return wrapper;
+};
+
 const filterCities = data => ({ target: { value } }) => {
   if (value === '') {
     updateList(initialUl);
@@ -27,12 +44,9 @@ const filterCities = data => ({ target: { value } }) => {
       return pattern.test(city) || pattern.test(state);
     })
     .map(({ city, state, population }) => {
-      const span = document.createElement('span');
-      span.classList.add('population');
-      span.textContent = format(population);
-
+      const span = makeSpan(format(population), 'population');
       const li = document.createElement('li');
-      li.textContent = `${city}, ${state}`;
+      li.append(highlight(`${city}, ${state}`, value));
       li.append(span);
       return li;
     });
@@ -55,6 +69,7 @@ const filterCities = data => ({ target: { value } }) => {
     const searchField = document.querySelector('.search');
     searchField.style.fontSize = '27px';
     searchField.placeholder = msg;
+    // eslint-disable-next-line no-console
     console.log(`${msg} Error: ${error}`);
   }
 })();
