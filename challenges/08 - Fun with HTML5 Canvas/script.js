@@ -7,18 +7,27 @@ const c = canvas.getContext('2d');
 
 let mouseDown = false;
 let last = {};
-c.strokeStyle = 'gray';
+let hue = 0;
+let size = 6;
+let delta = 1;
+
 c.lineJoin = 'round';
 c.lineCap = 'round';
-c.lineWidth = 20;
 
 const paint = ({ x, y }) => {
   if (!mouseDown) return;
   c.beginPath();
   c.moveTo(last.x, last.y);
   c.lineTo(x, y);
+  c.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  c.lineWidth = size;
   c.stroke();
   last = { x, y };
+  hue = (hue + 1) % 360;
+  if (size <= 5 || size >= 60) {
+    delta *= -1;
+  }
+  size += delta;
 };
 
 const setMouseDown = ({ x, y }) => {
