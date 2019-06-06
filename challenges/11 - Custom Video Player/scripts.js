@@ -4,6 +4,9 @@ const player = /** @type {HTMLMediaElement} */ (document.querySelector('.player_
 const playBtn = document.querySelector('.player__button.toggle');
 const progress = document.querySelector('.progress');
 const progressFilled = document.querySelector('.progress__filled');
+const volume = document.querySelector('input[name=volume]');
+const playbackRate = document.querySelector('input[name=playbackRate]');
+const skipBtns = document.querySelectorAll('.player__button[data-skip]');
 
 const togglePlay = () => {
   if (player.paused) player.play();
@@ -23,12 +26,8 @@ const setTime = ({ offsetX }) => {
   player.currentTime = player.duration * offsetX / progress.clientWidth;
 };
 
-const adjustVolume = ({ target: { value } }) => {
-  player.volume = value;
-};
-
-const adjustPlaybackRate = ({ target: { value } }) => {
-  player.playbackRate = value;
+const adjustVolumeAndPlayback = ({ target: { value, name } }) => {
+  player[name] = value;
 };
 
 const skipTime = ({ target: { dataset: { skip } } }) => {
@@ -42,12 +41,6 @@ player.addEventListener('pause', updatePlayBtn);
 player.addEventListener('durationchange', updateProgress);
 player.addEventListener('timeupdate', updateProgress);
 progress.addEventListener('click', setTime);
-document
-  .querySelector('input[name=volume]')
-  .addEventListener('input', adjustVolume);
-document
-  .querySelector('input[name=playbackRate]')
-  .addEventListener('input', adjustPlaybackRate);
-document
-  .querySelectorAll('.player__button[data-skip]')
-  .forEach(btn => btn.addEventListener('click', skipTime));
+volume.addEventListener('input', adjustVolumeAndPlayback);
+playbackRate.addEventListener('input', adjustVolumeAndPlayback);
+skipBtns.forEach(btn => btn.addEventListener('click', skipTime));
