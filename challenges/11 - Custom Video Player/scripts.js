@@ -1,7 +1,7 @@
 'use strict';
 
 const player = /** @type {HTMLMediaElement} */ (document.querySelector('.player__video'));
-const playBtn = document.querySelector('.player__button');
+const playBtn = document.querySelector('.player__button.toggle');
 const progress = document.querySelector('.progress');
 const progressFilled = document.querySelector('.progress__filled');
 
@@ -32,6 +32,10 @@ const adjustPlaybackRate = ({ target: { value } }) => {
   player.playbackRate = value;
 };
 
+const skipTime = ({ target: { dataset: { skip } } }) => {
+  player.currentTime += Number(skip);
+};
+
 player.addEventListener('click', togglePlay);
 playBtn.addEventListener('click', togglePlay);
 player.addEventListener('durationchange', updateProgress);
@@ -43,3 +47,6 @@ document
 document
   .querySelector('input[name=playbackRate]')
   .addEventListener('input', adjustPlaybackRate);
+document
+  .querySelectorAll('.player__button[data-skip]')
+  .forEach(btn => btn.addEventListener('click', skipTime));
