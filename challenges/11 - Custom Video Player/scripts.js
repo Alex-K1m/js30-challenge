@@ -6,13 +6,12 @@ const progress = document.querySelector('.progress');
 const progressFilled = document.querySelector('.progress__filled');
 
 const togglePlay = () => {
-  if (player.paused) {
-    player.play();
-    playBtn.textContent = '⏸';
-  } else {
-    player.pause();
-    playBtn.textContent = '►';
-  }
+  if (player.paused) player.play();
+  else player.pause();
+};
+
+const updatePlayBtn = () => {
+  playBtn.textContent = player.paused ? '►' : '⏸';
 };
 
 const updateProgress = () => {
@@ -38,6 +37,8 @@ const skipTime = ({ target: { dataset: { skip } } }) => {
 
 player.addEventListener('click', togglePlay);
 playBtn.addEventListener('click', togglePlay);
+player.addEventListener('play', updatePlayBtn);
+player.addEventListener('pause', updatePlayBtn);
 player.addEventListener('durationchange', updateProgress);
 player.addEventListener('timeupdate', updateProgress);
 progress.addEventListener('click', setTime);
