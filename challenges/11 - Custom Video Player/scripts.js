@@ -7,6 +7,7 @@ const progressFilled = document.querySelector('.progress__filled');
 const volume = document.querySelector('input[name=volume]');
 const playbackRate = document.querySelector('input[name=playbackRate]');
 const skipBtns = document.querySelectorAll('.player__button[data-skip]');
+let mouseDown = false;
 
 const togglePlay = () => {
   if (player.paused) player.play();
@@ -40,7 +41,9 @@ player.addEventListener('play', updatePlayBtn);
 player.addEventListener('pause', updatePlayBtn);
 player.addEventListener('durationchange', updateProgress);
 player.addEventListener('timeupdate', updateProgress);
-progress.addEventListener('click', setTime);
+progress.addEventListener('mousedown', (e) => { mouseDown = true; setTime(e); });
+progress.addEventListener('mouseup', () => { mouseDown = false; });
+progress.addEventListener('mousemove', e => mouseDown && setTime(e));
 volume.addEventListener('input', adjustVolumeAndPlayback);
 playbackRate.addEventListener('input', adjustVolumeAndPlayback);
 skipBtns.forEach(btn => btn.addEventListener('click', skipTime));
