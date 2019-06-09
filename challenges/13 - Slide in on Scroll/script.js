@@ -1,17 +1,16 @@
 'use strict';
 
-function debounce(func, wait = 20, immediate = true) {
-  var timeout;
-  return function () {
-    var context = this, args = arguments;
-    var later = function () {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
+function debounce(fn, ms = 20) {
+  let timer = null;
+  return (...args) => {
+    const onComplete = () => {
+      fn.apply(this, args);
+      timer = null;
     };
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(onComplete, ms);
   };
 }
 
