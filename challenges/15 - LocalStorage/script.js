@@ -9,7 +9,7 @@ const makeLi = (idx, text, checked = false) => {
   input.setAttribute('type', 'checkbox');
   input.setAttribute('id', `item${idx}`);
   input.setAttribute('data-index', `${idx}`);
-  if (checked) input.setAttribute('checked');
+  if (checked) input.setAttribute('checked', '');
 
   const label = document.createElement('label');
   label.setAttribute('for', `item${idx}`);
@@ -39,5 +39,14 @@ const addItem = (e) => {
   form.reset();
 };
 
+const toggleDone = ({ target }) => {
+  if (!target.matches('input')) return;
+  const { index } = target.dataset;
+  state.items[index].done = !state.items[index].done;
+  localStorage.setItem('state', JSON.stringify(state));
+  populateList(state.items, itemsList);
+};
+
 addItems.addEventListener('submit', addItem);
+itemsList.addEventListener('click', toggleDone);
 populateList(state.items, itemsList);
