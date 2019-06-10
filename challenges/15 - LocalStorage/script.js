@@ -2,7 +2,7 @@
 
 const addItems = document.querySelector('.add-items');
 const itemsList = document.querySelector('.plates');
-const state = { items: [] };
+const state = JSON.parse(localStorage.getItem('state')) || { items: [] };
 
 const makeLi = (idx, text, checked = false) => {
   const input = document.createElement('input');
@@ -35,7 +35,9 @@ const addItem = (e) => {
   const { items } = state;
   state.items = [...items, { idx: items.length, text, done: false }];
   populateList(state.items, itemsList);
+  localStorage.setItem('state', JSON.stringify(state));
   form.reset();
 };
 
 addItems.addEventListener('submit', addItem);
+populateList(state.items, itemsList);
