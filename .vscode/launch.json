@@ -9,14 +9,14 @@
       "request": "attach",
       "name": "Attach to Chrome",
       "port": 9222,
-      "urlFilter": "http://192.168.1.44:5500*",
+      "urlFilter": "127.0.0.1:5500*",
       "webRoot": "${workspaceFolder}"
     },
     {
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome",
-      "url": "http://192.168.1.44:5500",
+      "url": "127.0.0.1:5500",
       "webRoot": "${workspaceFolder}"
     }
   ]
