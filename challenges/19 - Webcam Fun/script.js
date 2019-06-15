@@ -26,6 +26,21 @@ const paintToCanvas = () => {
   setInterval(render, 17);
 };
 
+const takePhoto = () => {
+  snap.currentTime = 0;
+  snap.play();
+
+  const pic = canvas.toDataURL('image/jpeg');
+  const img = document.createElement('img');
+  img.src = pic;
+  img.alt = 'your photo';
+  const link = document.createElement('a');
+  link.href = pic;
+  link.setAttribute('download', 'picture');
+  link.append(img);
+  strip.prepend(link);
+};
+
 video.addEventListener('canplay', paintToCanvas);
 
 getVideo();
