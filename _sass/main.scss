@@ -19,7 +19,7 @@
 }
 
 $accent: #ffc600;
-$buttons: #a8763e;
+$buttons: #e19a37;
 $nums: #6f1a07;
 $text: #2b2118;
 
@@ -59,7 +59,7 @@ a, p {
 }
 
 .repo-link {
-  background-color: rgba(168, 118, 62, 0.5);
+  background-color: $buttons;
   border-radius: 1.7em;
   padding: .5em;
   display: flex;
@@ -85,7 +85,7 @@ a, p {
     list-style-type: none;
   }
   &__item {
-    background-color: rgba(168, 118, 62, 0.5);
+    background-color: $buttons;
     border-radius: 1.6em;
     overflow: hidden;
     position: relative;
